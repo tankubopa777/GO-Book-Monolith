@@ -34,3 +34,13 @@ func (h *userHttpHandler) DetectUser(c echo.Context) error {
 
  return response(c, http.StatusOK, "Success !!!")
 }
+
+func (h *userHttpHandler) GetAllUsers(c echo.Context) error {
+    users, err := h.userUsecase.GetAllUsers()
+    if err != nil {
+        log.Errorf("Error retrieving all users: %v", err)
+        return response(c, http.StatusInternalServerError, "Could not retrieve users")
+    }
+
+    return c.JSON(http.StatusOK, users) // Directly return the users slice as JSON
+}

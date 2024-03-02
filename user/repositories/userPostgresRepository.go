@@ -30,3 +30,13 @@ func (r *userPostgresRepository) InsertUserData(in *entities.InsertUserDto) erro
  log.Debugf("InsertUserData: %v", result.RowsAffected)
  return nil
 }
+
+func (r *userPostgresRepository) FindAll() ([]*entities.User, error) {
+    var users []*entities.User
+    result := r.db.Find(&users)
+    if result.Error != nil {
+        log.Errorf("FindAll: %v", result.Error)
+        return nil, result.Error
+    }
+    return users, nil
+}

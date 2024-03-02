@@ -51,4 +51,5 @@ func (s *echoServer) initializeUserHttpHandler() {
  // Routers
  userRouters := s.app.Group("v1/user")
  userRouters.POST("", userHttpHandler.DetectUser)
+ userRouters.GET("", userHttpHandler.GetAllUsers)
 }

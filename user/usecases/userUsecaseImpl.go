@@ -44,3 +44,7 @@ func (u *userUsecaseImpl) UserDataProcessing(in *models.AddUserData) error {
 
  return nil
 }
+
+func (u *userUsecaseImpl) GetAllUsers() ([]*entities.User, error) {
+    return u.userRepository.FindAll()
+}
